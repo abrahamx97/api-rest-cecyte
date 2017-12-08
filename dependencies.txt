@@ -1,0 +1,6 @@
+koa: library with array of middlawere for web application and apis
+mocha, chai, chai-http: testing framework
+knex: SQL query builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, and Oracle
+pg: native library to connect postgre to js
+koa-router
+koa-bodyparser
