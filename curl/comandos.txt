@@ -1,6 +1,0 @@
-curl --compressed --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXRyaWN1bGEiOiJjZWN5dGVyb290IiwiY29udHJhc2VuYSI6IiQyYSQxMCRXZGtFSHNkUlp2N0xFRWdFWEp2bFZ1S2lKcU1yNmwwU0Z4MHo5aEg4QWtvMXJkTjdIUC5LcSIsImlhdCI6MTUxMjA5ODUxMX0.lKIK8ek-6vpKrtzrLK4yI4DbLyUhhZtLHoKCcaVUbxg" "http://localhost:1337/api/cecyte/alumnos/15427070032373"
-
-curl --compressed --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiY2VjeXRlcm9vdCIsImNvbnRyYXNlbmEiOiIkMmEkMTAkV2RrRUhzZFJadjdMRUVnRVhKdmxWdUtpSnFNcjZsMFNGeDB6OWhIOEFrbzFyZE43SFAuS3EiLCJpYXQiOjE1MTIxMzkzMzd9.nqowdfo2zYqiwAF5gOfVurQ29XstLJBtLepBdX-VjDQ" "http://localhost:1337/api/cecyte/alumnos/15427070032373"
-
-
-curl -X POST --data @login_a.json -H "Content-Type: application/json" http://localhost:1337/api/cecyte/login
