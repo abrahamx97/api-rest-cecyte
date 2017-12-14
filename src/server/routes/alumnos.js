@@ -5,7 +5,8 @@ const jwt = require('../middlewares/jwt')
 const router = new Router();
 const BASE_URL = `/api/v1/alumnos`;
 const BASE_URL_CAL = `/api/v1/calificaciones/alumnos`;
-http://localhost:1337/api/v1/calificaciones/alumnos/16427070078841
+const BASE_URL_ACTUALIZAR_CONTRASENA = `/api/v1/contrasena/alumnos`
+
 router.get(BASE_URL, jwt, async (ctx) => {
     try {
         const alumnos = await queries.getAlumnos();
@@ -65,79 +66,26 @@ router.get(`${BASE_URL_CAL}/:mat`, jwt, async (ctx) => {
     }
 } )
 
-/*router.post(`${BASE_URL}`, async (ctx) => {
-  try {
-    const movie = await queries.addMovie(ctx.request.body);
-    if (movie.length) {
-      ctx.status = 201;
-      ctx.body = {
-        status: 'success',
-        data: movie
-      };
-    } else {
-      ctx.status = 400;
-      ctx.body = {
-        status: 'error',
-        message: 'Something went wrong.'
-      };
+router.put(`${BASE_URL_ACTUALIZAR_CONTRASENA}/:mat`, jwt, async (ctx) => {
+    try {
+        const alumno = await queries.actualizarContrasena(ctx.params.mat, ctx.request.body)
+        if(alumno.length){
+            ctx.status = 200
+            ctx.body = {
+                status: 'success',
+                token: jwt.sign({ id: alumno[0].id, usuario: alumno[0].matricula, contrasena: alumno[0].contrasena }, jwt.secret_key())
+            };
+        }else{
+            ctx.status = 404;
+            ctx.body = {
+                status: 'error',
+                message: 'No se encontro el alumno.'
+            };
+        }
+    } catch (error) {
+        console.log(error)
     }
-  } catch (err) {
-    ctx.status = 400;
-    ctx.body = {
-      status: 'error',
-      message: err.message || 'Sorry, an error has occurred.'
-    };
-  }
 })
 
-router.put(`${BASE_URL}/:id`, async (ctx) => {
-  try {
-    const movie = await queries.updateMovie(ctx.params.id, ctx.request.body);
-    if (movie.length) {
-      ctx.status = 200;
-      ctx.body = {
-        status: 'success',
-        data: movie
-      };
-    } else {
-      ctx.status = 404;
-      ctx.body = {
-        status: 'error',
-        message: 'That movie does not exist.'
-      };
-    }
-  } catch (err) {
-    ctx.status = 400;
-    ctx.body = {
-      status: 'error',
-      message: err.message || 'Sorry, an error has occurred.'
-    };
-  }
-})
-
-router.delete(`${BASE_URL}/:id`, async (ctx) => {
-  try {
-    const movie = await queries.deleteMovie(ctx.params.id);
-    if (movie.length) {
-      ctx.status = 200;
-      ctx.body = {
-        status: 'success',
-        data: movie
-      };
-    } else {
-      ctx.status = 404;
-      ctx.body = {
-        status: 'error',
-        message: 'That movie does not exist.'
-      };
-    }
-  } catch (err) {
-    ctx.status = 400;
-    ctx.body = {
-      status: 'error',
-      message: err.message || 'Sorry, an error has occurred.'
-    };
-  }
-})*/
 
 module.exports = router;
