@@ -63,5 +63,8 @@ typings/
 #database config file
 knexfile.js
 
+#SECRET KEY file for JWT
+src/server/jwt/jwt.key.js
+
 #test directory
 test/
